@@ -22,7 +22,7 @@ var ground1
 var ground2
 var ground3
 
-var button1 = true
+var button1 = false
 var button2 = false
 
 function setup() {
@@ -58,12 +58,12 @@ function mouseClicked() {
   if (mouseX >= 0 && mouseY >= 0) {
     if (button1) {
       shapes.push(new Polygon(mouseX, mouseY, 6, 80, option))
-      // button1 = false
+      button1 = false
     } else if (button2) {
       var ball = new Circle(mouseX, mouseY, 20)
       Body.setVelocity(ball.body, { x: 3, y: 5 })
       balls.push(ball)
-      // button2 = false
+      button2 = false
     }
   }
 }
