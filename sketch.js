@@ -24,6 +24,10 @@ var ground3
 
 var button1 = false
 var button2 = false
+var side_length = 6
+var cir = false
+var shape_rad = 80
+var header = 50
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight)
@@ -33,14 +37,14 @@ function setup() {
   Engine.run(engine)
 
   ground = Bodies.rectangle(width / 2, height, width, 10, option)
-  ground1 = Bodies.rectangle(height / 2, 0, width, 10, option)
-  ground2 = Bodies.rectangle(0, width / 2, 10, height, option)
-  ground3 = Bodies.rectangle(width, width / 2, 10, height, option)
+  ground1 = Bodies.rectangle(width / 2, 0, width, 10, option)
+  ground2 = Bodies.rectangle(0, height / 2, 10, height, option)
+  ground3 = Bodies.rectangle(width, height / 2, 10, height, option)
 
-  hex = new Polygon(width / 2, height / 2, 6, 80, option)
+  hex = new Polygon(width / 2, height / 2, 6, 80)
 
-  cir1 = new Circle(70, 70, 40, { id: "circle1" })
-  cir2 = new Circle(220, 220, 40, { id: "circle2" })
+  cir1 = new Circle(70, 70, 40, "circle1")
+  cir2 = new Circle(220, 220, 40, "circle2")
 
   Body.setVelocity(cir1.body, { x: 3, y: 5 })
 
@@ -50,14 +54,17 @@ function setup() {
 
   Events.on(engine, "collisionStart", function (e) {
     // console.log(e)
-    console.log(e)
   })
 }
 
 function mouseClicked() {
-  if (mouseX >= 0 && mouseY >= 0) {
+  if (mouseX >= 0 && mouseY >= header) {
     if (button1) {
-      shapes.push(new Polygon(mouseX, mouseY, 6, 80, option))
+      if (cir) {
+        shapes.push(new Circle(mouseX, mouseY, shape_rad, 0, true))
+      } else {
+        shapes.push(new Polygon(mouseX, mouseY, side_length, shape_rad))
+      }
       button1 = false
     } else if (button2) {
       var ball = new Circle(mouseX, mouseY, 20)
@@ -79,8 +86,5 @@ function draw() {
 
   cir1.show()
   cir2.show()
-
   hex.show()
-
-  console.log(mouseX, mouseY)
 }

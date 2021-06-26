@@ -8,22 +8,92 @@
     <link rel="stylesheet" href="style.css" />
     <meta charset="utf-8" />
     <!-- <script src="Button.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="UI.js"></script>
   </head>
 
   <body style="background-color: black">
-    <div class="ui buttons" style="float: right; margin: 5px">
-      <button class="ui inverted red button" onclick="button1 = true">
-        Shape
-      </button>
-      <button class="ui inverted teal button" onclick="button2 = true">
-        Ball
-      </button>
+    <div class="ui left demo vertical inverted sidebar labeled icon menu">
+      <a class="item">
+        <i class="home icon"></i>
+        Home
+      </a>
+      <a class="item">
+        <i class="block layout icon"></i>
+        Topics
+      </a>
+      <a class="item">
+        <i class="help icon"></i>
+        Friends
+      </a>
     </div>
+
+    <button
+      class="ui inverted icon button"
+      id="sb"
+      style="position: absolute; margin: 10px"
+    >
+      Menu
+    </button>
+
+    <div
+      id="parental shape buttons"
+      style="margin: 5px; position: absolute; right: 0"
+    >
+      <div
+        class="ui buttons"
+        style="margin: 5px; position: relative; float: right"
+      >
+        <button
+          class="ui inverted teal button pop"
+          onclick="button2 = true"
+          data-content="Adds a new ball"
+        >
+          Ball
+        </button>
+      </div>
+
+      <div class="ui buttons floated right" style="margin: 5px">
+        <button
+          class="ui red button pop"
+          onclick="button1 = true"
+          data-content="Adds a new shape"
+        >
+          Add Shape
+        </button>
+        <button
+          class="ui teal button grp"
+          onclick="side_length = 3, cir = false"
+        >
+          Triangle
+        </button>
+        <button
+          class="ui teal button grp"
+          onclick="side_length = 4, cir = false"
+        >
+          Square
+        </button>
+        <button
+          class="ui teal button grp"
+          onclick="side_length = 5, cir = false"
+        >
+          Pentagon
+        </button>
+        <button
+          class="ui teal button grp active"
+          onclick="side_length = 6, cir = false"
+        >
+          Hexagon
+        </button>
+        <button class="ui teal button grp" onclick="cir = true">Circle</button>
+      </div>
+    </div>
+
     <script src="matter.min.js"></script>
     <script src="Box.js"></script>
     <script src="Circle.js"></script>

@@ -4,25 +4,23 @@ function Polygon(
   s,
   r,
   options = {
-    frictionAir: 0,
-    friction: 0,
-    frictionStatic: 0,
-    inertia: Infinity,
-    restitution: 1,
-    collisionFilter: {
-      mask: 0x001,
-    },
+    isStatic: true,
   }
 ) {
   this.body = Bodies.polygon(x, y, s, r, options)
   this.r = r
   this.s = s
 
+  if (this.s == 3) {
+    Body.rotate(this.body, PI / (s * -2))
+  } else if (this.s == 5) {
+    Body.rotate(this.body, PI / (s * 2))
+  }
   World.add(world, this.body)
 
   this.show = function () {
     var pos = this.body.position
-    var angle = this.body.angle
+    var angle = this.body.angle - PI / s
     var an = TWO_PI / s
 
     push()

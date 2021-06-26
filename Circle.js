@@ -1,17 +1,27 @@
-function Circle(x, y, r) {
-  options = {
-    frictionAir: 0,
-    friction: 0,
-    frictionStatic: 0,
-    inertia: Infinity,
-    restitution: 1,
-    collisionFilter: {
-      mask: 0x001,
-    },
+function Circle(x, y, r, name = 0, stat = false) {
+  if (stat) {
+    options = {
+      isStatic: true,
+    }
+  } else {
+    options = {
+      frictionAir: 0,
+      friction: 0,
+      frictionStatic: 0,
+      inertia: Infinity,
+      restitution: 1,
+      collisionFilter: {
+        mask: 0x001,
+      },
+    }
   }
 
   this.body = Bodies.circle(x, y, r, options)
   this.r = r
+
+  if (name != 0) {
+    this.body.id = name
+  }
 
   World.add(world, this.body)
 
