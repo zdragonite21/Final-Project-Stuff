@@ -28,6 +28,7 @@ var side_length = 6
 var cir = false
 var shape_rad = 80
 var header = 50
+var rot = 0
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight)
@@ -75,6 +76,11 @@ function mouseClicked() {
   }
 }
 
+function mouseWheel(event) {
+  shape_rad += event.delta / 20
+  shape_rad = constrain(shape_rad, 30, 150)
+}
+
 function draw() {
   background(51)
   for (var i = 0; i < shapes.length; i++) {
@@ -82,6 +88,10 @@ function draw() {
   }
   for (var i = 0; i < balls.length; i++) {
     balls[i].show()
+  }
+
+  if (button1) {
+    Poly(side_length, shape_rad, rot, cir)
   }
 
   cir1.show()

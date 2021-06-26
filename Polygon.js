@@ -41,3 +41,39 @@ function Polygon(
     pop()
   }
 }
+
+function Poly(s, r, a, c) {
+  var pos = { x: mouseX, y: constrain(mouseY, 50, height) }
+  if (c) {
+    strokeWeight(1)
+    stroke(255)
+    fill(177)
+    ellipse(pos.x, pos.y, r * 2, r * 2)
+  } else {
+    var angle = a - PI / s
+    var an = TWO_PI / s
+
+    if (s == 3) {
+      angle += PI / (s * -2)
+    } else if (s == 5) {
+      angle += PI / (s * 2)
+    }
+
+    push()
+    translate(pos.x, pos.y)
+    rotate(angle)
+    strokeWeight(1)
+    stroke(255)
+    fill(177)
+
+    beginShape()
+    for (let i = 0; i < TWO_PI; i += an) {
+      let sx = cos(i) * r
+      let sy = sin(i) * r
+      vertex(sx, sy)
+    }
+    endShape(CLOSE)
+
+    pop()
+  }
+}
