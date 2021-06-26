@@ -3,6 +3,7 @@ function Polygon(
   y,
   s,
   r,
+  R = 0,
   options = {
     isStatic: true,
   }
@@ -10,12 +11,15 @@ function Polygon(
   this.body = Bodies.polygon(x, y, s, r, options)
   this.r = r
   this.s = s
+  this.R = R
 
   if (this.s == 3) {
-    Body.rotate(this.body, PI / (s * -2))
+    this.R += PI / (s * -2)
   } else if (this.s == 5) {
-    Body.rotate(this.body, PI / (s * 2))
+    this.R += PI / (s * 2)
   }
+
+  Body.rotate(this.body, this.R)
   World.add(world, this.body)
 
   this.show = function () {
@@ -42,12 +46,11 @@ function Polygon(
   }
 }
 
-function Poly(s, r, a, c) {
-  var pos = { x: mouseX, y: constrain(mouseY, 50, height) }
+function Poly(X, Y, s, r, a, c) {
+  var pos = { x: X, y: constrain(Y, 50, height) }
   if (c) {
     strokeWeight(1)
     stroke(255)
-    fill(177)
     ellipse(pos.x, pos.y, r * 2, r * 2)
   } else {
     var angle = a - PI / s

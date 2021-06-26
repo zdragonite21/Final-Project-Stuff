@@ -30,6 +30,11 @@ var shape_rad = 80
 var header = 50
 var rot = 0
 
+var poX = 0
+var poY = 0
+var stay = false
+var turn = false
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight)
   engine = Engine.create()
@@ -42,7 +47,7 @@ function setup() {
   ground2 = Bodies.rectangle(0, height / 2, 10, height, option)
   ground3 = Bodies.rectangle(width, height / 2, 10, height, option)
 
-  hex = new Polygon(width / 2, height / 2, 6, 80)
+  hex = new Polygon(width / 2, height / 2, 6, 80, 0)
 
   cir1 = new Circle(70, 70, 40, "circle1")
   cir2 = new Circle(220, 220, 40, "circle2")
@@ -61,12 +66,17 @@ function setup() {
 function mouseClicked() {
   if (mouseX >= 0 && mouseY >= header) {
     if (button1) {
-      if (cir) {
-        shapes.push(new Circle(mouseX, mouseY, shape_rad, 0, true))
+      if (stay) {
+        if (cir) {
+          shapes.push(new Circle(poX, poY, shape_rad, 0, true))
+        } else {
+          shapes.push(new Polygon(poX, poY, side_length, shape_rad, rot))
+        }
+        button1 = false
+        stay = false
       } else {
-        shapes.push(new Polygon(mouseX, mouseY, side_length, shape_rad))
+        stay = true
       }
-      button1 = false
     } else if (button2) {
       var ball = new Circle(mouseX, mouseY, 20)
       Body.setVelocity(ball.body, { x: 3, y: 5 })
@@ -90,8 +100,18 @@ function draw() {
     balls[i].show()
   }
 
+  if (!stay) {
+    poX = mouseX
+    poY = mouseY
+    turn = true
+  }
+
+  if (turn) {
+    rot = Math.atan2(mouseY - poY, mouseX - poX)
+  }
+
   if (button1) {
-    Poly(side_length, shape_rad, rot, cir)
+    Poly(poX, poY, side_length, shape_rad, rot, cir)
   }
 
   cir1.show()
