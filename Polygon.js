@@ -51,6 +51,7 @@ function Poly(X, Y, s, r, a, c) {
   if (c) {
     strokeWeight(1)
     stroke(255)
+    fill(177)
     ellipse(pos.x, pos.y, r * 2, r * 2)
   } else {
     var angle = a - PI / s
