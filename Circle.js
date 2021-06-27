@@ -40,3 +40,16 @@ function Circle(x, y, r, name = 0, stat = false) {
     pop()
   }
 }
+
+function Cir(X, Y, r) {
+  var pos = { x: X, y: constrain(Y, 50, height) }
+
+  push()
+  translate(pos.x, pos.y)
+  strokeWeight(1)
+  stroke(255)
+  fill(127)
+  ellipse(0, 0, r * 2, r * 2)
+
+  pop()
+}

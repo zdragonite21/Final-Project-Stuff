@@ -27,6 +27,7 @@ var button2 = false
 var side_length = 6
 var cir = false
 var shape_rad = 80
+var ball_rad = 20
 var header = 50
 var rot = 0
 
@@ -78,7 +79,7 @@ function mouseClicked() {
         stay = true
       }
     } else if (button2) {
-      var ball = new Circle(mouseX, mouseY, 20)
+      var ball = new Circle(mouseX, mouseY, ball_rad)
       Body.setVelocity(ball.body, { x: 3, y: 5 })
       balls.push(ball)
       button2 = false
@@ -116,6 +117,10 @@ function draw() {
 
   if (button1) {
     Poly(poX, poY, side_length, shape_rad, rot, cir)
+  }
+
+  if (button2) {
+    Cir(poX, poY, ball_rad)
   }
 
   cir1.show()
