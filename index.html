@@ -34,66 +34,71 @@
       </a>
     </div>
 
-    <button
-      class="ui inverted icon button"
-      id="sb"
-      style="position: absolute; margin: 10px"
-    >
-      Menu
-    </button>
-
-    <div
-      id="parental shape buttons"
-      style="margin: 5px; position: absolute; right: 0"
-    >
-      <div
-        class="ui buttons"
-        style="margin: 5px; position: relative; float: right"
+    <div id="header" class="trans" style="position: relative">
+      <button
+        class="ui inverted icon button"
+        id="sb"
+        style="position: absolute; margin: 10px"
       >
-        <button
-          class="ui inverted teal button pop"
-          onclick="button2 = true"
-          data-content="Adds a new ball"
-        >
-          Ball
-        </button>
-      </div>
+        Menu
+      </button>
 
-      <div class="ui buttons floated right" style="margin: 5px">
-        <button
-          class="ui red button pop"
-          onclick="button1 = true"
-          data-content="Adds a new shape (Use scroll wheel to change size and use shift key to rotate in increments)"
+      <div
+        class="parental shape buttons"
+        style="margin: 5px; position: absolute; right: 0"
+      >
+        <div
+          class="ui buttons"
+          style="margin: 5px; position: relative; float: right"
         >
-          Add Shape
-        </button>
-        <button
-          class="ui teal button grp"
-          onclick="side_length = 3, cir = false"
-        >
-          Triangle
-        </button>
-        <button
-          class="ui teal button grp"
-          onclick="side_length = 4, cir = false"
-        >
-          Square
-        </button>
-        <button
-          class="ui teal button grp"
-          onclick="side_length = 5, cir = false"
-        >
-          Pentagon
-        </button>
-        <button
-          class="ui teal button grp active"
-          onclick="side_length = 6, cir = false"
-        >
-          Hexagon
-        </button>
-        <button class="ui teal button grp" onclick="cir = true">Circle</button>
+          <button
+            class="ui inverted teal button pop"
+            onclick="button2 = true"
+            data-content="Adds a new ball"
+          >
+            Ball
+          </button>
+        </div>
+
+        <div class="ui buttons floated right" style="margin: 5px">
+          <button
+            class="ui red button pop"
+            onclick="button1 = true"
+            data-content="Adds a new shape (Use scroll wheel to change size and use shift key to rotate in increments)"
+          >
+            Add Shape
+          </button>
+          <button
+            class="ui teal button grp"
+            onclick="side_length = 3, cir = false"
+          >
+            Triangle
+          </button>
+          <button
+            class="ui teal button grp"
+            onclick="side_length = 4, cir = false"
+          >
+            Square
+          </button>
+          <button
+            class="ui teal button grp"
+            onclick="side_length = 5, cir = false"
+          >
+            Pentagon
+          </button>
+          <button
+            class="ui teal button grp active"
+            onclick="side_length = 6, cir = false"
+          >
+            Hexagon
+          </button>
+          <button class="ui teal button grp" onclick="cir = true">
+            Circle
+          </button>
+        </div>
       </div>
     </div>
+
     <script src="Math_Funct.js"></script>
     <script src="matter.min.js"></script>
     <script src="Box.js"></script>

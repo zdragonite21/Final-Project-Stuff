@@ -42,7 +42,7 @@ function Circle(x, y, r, name = 0, stat = false) {
 }
 
 function Cir(X, Y, r) {
-  var pos = { x: X, y: constrain(Y, 50, height) }
+  var pos = { x: X, y: constrain(Y, header, height) }
 
   push()
   translate(pos.x, pos.y)

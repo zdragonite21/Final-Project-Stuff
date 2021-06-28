@@ -35,6 +35,7 @@ var poX = 0
 var poY = 0
 var stay = false
 var turn = false
+var hidden = false
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight)
@@ -67,16 +68,17 @@ function setup() {
 function mouseClicked() {
   if (mouseX >= 0 && mouseY >= header) {
     if (button1) {
-      if (stay) {
-        if (cir) {
-          shapes.push(new Circle(poX, poY, shape_rad, 0, true))
-        } else {
-          shapes.push(new Polygon(poX, poY, side_length, shape_rad, rot))
-        }
+      if (cir) {
+        shapes.push(new Circle(poX, poY, shape_rad, 0, true))
         button1 = false
-        stay = false
       } else {
-        stay = true
+        if (stay) {
+          shapes.push(new Polygon(poX, poY, side_length, shape_rad, rot))
+          button1 = false
+          stay = false
+        } else {
+          stay = true
+        }
       }
     } else if (button2) {
       var ball = new Circle(mouseX, mouseY, ball_rad)
@@ -84,6 +86,18 @@ function mouseClicked() {
       balls.push(ball)
       button2 = false
     }
+  }
+}
+
+function keyPressed() {
+  if (keyCode === 72 && hidden == false) {
+    $(".trans").animate({ top: "-100px" })
+    hidden = true
+    header = 0
+  } else if (keyCode === 72 && hidden == true) {
+    $(".trans").animate({ top: "0" })
+    hidden = false
+    header = 50
   }
 }
 

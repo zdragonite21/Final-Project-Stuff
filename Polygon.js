@@ -47,7 +47,7 @@ function Polygon(
 }
 
 function Poly(X, Y, s, r, a, c) {
-  var pos = { x: X, y: constrain(Y, 50, height) }
+  var pos = { x: X, y: constrain(Y, header, height) }
   if (c) {
     strokeWeight(1)
     stroke(255)
