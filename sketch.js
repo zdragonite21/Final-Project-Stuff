@@ -14,6 +14,9 @@ var world
 var cir1
 var cir2
 var hex
+var con
+var con_vec
+var mouse_vec
 var shapes = []
 var balls = []
 
@@ -30,6 +33,9 @@ var shape_rad = 80
 var ball_rad = 20
 var header = 50
 var rot = 0
+var vel = { x: 3, y: 4 }
+var max_rad = 400
+var min_rad = 40
 
 var poX = 0
 var poY = 0
@@ -81,10 +87,15 @@ function mouseClicked() {
         }
       }
     } else if (button2) {
-      var ball = new Circle(mouseX, mouseY, ball_rad)
-      Body.setVelocity(ball.body, { x: 3, y: 5 })
-      balls.push(ball)
-      button2 = false
+      if (stay) {
+        var ball = new Circle(poX, poY, ball_rad)
+        Body.setVelocity(ball.body, vel)
+        balls.push(ball)
+        button2 = false
+        stay = false
+      } else {
+        stay = true
+      }
     }
   }
 }
@@ -108,6 +119,7 @@ function mouseWheel(event) {
 
 function draw() {
   background(51)
+  mouse_vec = createVector(mouseX, constrain(mouseY, header, height))
   for (var i = 0; i < shapes.length; i++) {
     shapes[i].show()
   }
@@ -118,17 +130,36 @@ function draw() {
   if (!stay) {
     poX = mouseX
     poY = mouseY
+  } else {
     turn = true
   }
 
+  cir1.show()
+  cir2.show()
+  hex.show()
+
   if (turn) {
-    if (keyIsDown(16)) {
-      rot = roun(Math.atan2(mouseY - poY, mouseX - poX), PI / (side_length * 2))
-    } else {
-      rot = Math.atan2(mouseY - poY, mouseX - poX)
+    if (button1) {
+      if (keyIsDown(16)) {
+        rot = roun(
+          Math.atan2(mouseY - poY, mouseX - poX),
+          PI / (side_length * 2)
+        )
+      } else {
+        rot = Math.atan2(mouseY - poY, mouseX - poX)
+      }
+    } else if (button2) {
+      con = cirConstrain(
+        { x: poX, y: poY },
+        mouse_vec,
+        min_rad,
+        max_rad,
+        keyIsDown(16)
+      )
+      con_vec = createVector(con.x, con.y)
+      vel = drawArrow({ x: poX, y: poY }, con_vec)
     }
   }
-
   if (button1) {
     Poly(poX, poY, side_length, shape_rad, rot, cir)
   }
@@ -136,8 +167,4 @@ function draw() {
   if (button2) {
     Cir(poX, poY, ball_rad)
   }
-
-  cir1.show()
-  cir2.show()
-  hex.show()
 }
