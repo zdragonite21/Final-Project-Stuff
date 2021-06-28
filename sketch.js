@@ -13,6 +13,7 @@ var engine
 var world
 var cir1
 var cir2
+var eraser
 var hex
 var con
 var con_vec
@@ -42,6 +43,7 @@ var poY = 0
 var stay = false
 var turn = false
 var hidden = false
+var erase = false
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight)
@@ -59,6 +61,8 @@ function setup() {
 
   cir1 = new Circle(70, 70, 40, "circle1")
   cir2 = new Circle(220, 220, 40, "circle2")
+
+  eraser = new Eraser(mouseX, 50, 10)
 
   Body.setVelocity(cir1.body, { x: 3, y: 5 })
 
@@ -166,5 +170,10 @@ function draw() {
 
   if (button2) {
     Cir(poX, poY, ball_rad)
+  }
+
+  if (erase) {
+    eraser.show()
+    eraser.detect()
   }
 }

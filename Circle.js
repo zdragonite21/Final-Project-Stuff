@@ -48,7 +48,7 @@ function Cir(X, Y, r) {
   translate(pos.x, pos.y)
   strokeWeight(1)
   stroke(255)
-  fill(127)
+  fill(177)
   ellipse(0, 0, r * 2, r * 2)
 
   pop()
