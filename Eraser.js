@@ -8,7 +8,7 @@ function Eraser(x, y, r) {
   this.r = r
 
   World.add(world, this.body)
-
+  Composite.add(world, this.body)
   this.show = function () {
     var pos = { x: mouseX, y: constrain(mouseY, 50, height) }
 

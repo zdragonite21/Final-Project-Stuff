@@ -4,6 +4,7 @@ World = Matter.World
 Bodies = Matter.Bodies
 Body = Matter.Body
 Events = Matter.Events
+Composite = Matter.Composite
 
 var option = {
   isStatic: true,
