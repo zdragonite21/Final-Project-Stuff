@@ -13,6 +13,7 @@ var option = {
 
 var STATIC_BODIES = []
 var NONSTATIC_BODIES = []
+var ALL_BODIES = []
 
 var engine
 var world
@@ -75,8 +76,12 @@ function setup() {
 
   hex = new Polygon(width / 2, height / 2, 6, 80, 0)
 
+  shapes.push(hex)
+
   cir1 = new Circle(70, 70, 40, false)
   cir2 = new Circle(220, 220, 40, false)
+
+  balls.push(cir1, cir2)
 
   eraser = new Eraser(mouseX, 50, 10)
 
@@ -162,10 +167,6 @@ function draw() {
   } else {
     turn = true
   }
-
-  cir1.show()
-  cir2.show()
-  hex.show()
 
   if (turn) {
     if (button1) {

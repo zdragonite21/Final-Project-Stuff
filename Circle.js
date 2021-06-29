@@ -25,6 +25,8 @@ function Circle(x, y, r, stat = false) {
     NONSTATIC_BODIES.push(this.body)
   }
 
+  ALL_BODIES.push(this.body)
+
   World.add(world, this.body)
 
   this.show = function () {
