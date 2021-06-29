@@ -11,6 +11,9 @@ var option = {
   isStatic: true,
 }
 
+var STATIC_BODIES = []
+var NONSTATIC_BODIES = []
+
 var engine
 var world
 var cir1
@@ -72,8 +75,8 @@ function setup() {
 
   hex = new Polygon(width / 2, height / 2, 6, 80, 0)
 
-  cir1 = new Circle(70, 70, 40, "circle1")
-  cir2 = new Circle(220, 220, 40, "circle2")
+  cir1 = new Circle(70, 70, 40, false)
+  cir2 = new Circle(220, 220, 40, false)
 
   eraser = new Eraser(mouseX, 50, 10)
 
@@ -97,7 +100,7 @@ function mouseClicked() {
   if (mouseX >= 0 && mouseY >= header) {
     if (button1) {
       if (cir) {
-        shapes.push(new Circle(poX, poY, shape_rad, 0, true))
+        shapes.push(new Circle(poX, poY, shape_rad, true))
         button1 = false
       } else {
         if (stay) {
@@ -110,7 +113,7 @@ function mouseClicked() {
       }
     } else if (button2) {
       if (stay) {
-        var ball = new Circle(poX, poY, ball_rad)
+        var ball = new Circle(poX, poY, ball_rad, false)
         Body.setVelocity(ball.body, vel)
         balls.push(ball)
         button2 = false
@@ -192,9 +195,6 @@ function draw() {
 
   if (erase) {
     eraser.show()
+    eraser.detect()
   }
-
-  var checker = Query.point([hex.body], mouse_vec)
-
-  checker.length > 0 ? console.log(checker[0].label) : console.log("none")
 }

@@ -13,6 +13,8 @@ function Polygon(
   this.s = s
   this.R = R
 
+  STATIC_BODIES.push(this.body)
+
   if (this.s == 3) {
     this.R += PI / (s * -2)
   } else if (this.s == 5) {

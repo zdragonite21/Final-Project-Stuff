@@ -1,4 +1,4 @@
-function Circle(x, y, r, name = 0, stat = false) {
+function Circle(x, y, r, stat = false) {
   if (stat) {
     options = {
       isStatic: true,
@@ -19,8 +19,10 @@ function Circle(x, y, r, name = 0, stat = false) {
   this.body = Bodies.circle(x, y, r, options)
   this.r = r
 
-  if (name != 0) {
-    this.body.id = name
+  if (stat) {
+    STATIC_BODIES.push(this.body)
+  } else {
+    NONSTATIC_BODIES.push(this.body)
   }
 
   World.add(world, this.body)

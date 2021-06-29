@@ -25,4 +25,10 @@ function Eraser(x, y, r) {
 
     pop()
   }
+
+  this.detect = function () {
+    var checker = Query.point(STATIC_BODIES, mouse_vec)
+
+    checker.length > 0 ? console.log(checker[0].label) : console.log("none")
+  }
 }
