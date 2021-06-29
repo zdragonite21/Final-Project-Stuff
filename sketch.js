@@ -145,9 +145,13 @@ function mouseWheel(event) {
 function draw() {
   background(51)
   mouse_vec = createVector(mouseX, constrain(mouseY, header, height))
-  for (var i = 0; i < shapes.length; i++) {
-    shapes[i].show()
+
+  if (shapes.length > 0) {
+    for (var i = 0; i < shapes.length; i++) {
+      shapes[i].show()
+    }
   }
+
   for (var i = 0; i < balls.length; i++) {
     balls[i].show()
   }

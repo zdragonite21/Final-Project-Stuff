@@ -29,6 +29,9 @@ function Eraser(x, y, r) {
   this.detect = function () {
     var checker = Query.point(STATIC_BODIES, mouse_vec)
 
-    checker.length > 0 ? console.log(checker[0].label) : console.log("none")
+    if (checker.length > 0) {
+      var index = STATIC_BODIES.indexOf(checker[0])
+      shapes[index].remove()
+    }
   }
 }
