@@ -49,13 +49,18 @@ function Polygon(
   }
 }
 
-function Poly(X, Y, s, r, a, c) {
+function Poly(X, Y, s, r, a, c, l) {
   var pos = { x: X, y: constrain(Y, header, height) }
   if (c) {
     strokeWeight(1)
     stroke(255)
     fill(177)
     ellipse(pos.x, pos.y, r * 2, r * 2)
+  } else if (l) {
+    strokeWeight(1)
+    stroke(255)
+    fill(177)
+    ellipse(pos.x, pos.y, stroke_len, stroke_len)
   } else {
     var angle = a - PI / s
     var an = TWO_PI / s

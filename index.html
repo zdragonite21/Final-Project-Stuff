@@ -69,31 +69,34 @@
           >
             Add Shape
           </button>
+          <button class="ui teal button grp" onclick="L = true, cir = false">
+            Line
+          </button>
           <button
             class="ui teal button grp"
-            onclick="side_length = 3, cir = false"
+            onclick="side_length = 3, cir = false, L = false"
           >
             Triangle
           </button>
           <button
             class="ui teal button grp"
-            onclick="side_length = 4, cir = false"
+            onclick="side_length = 4, cir = false, L = false"
           >
             Square
           </button>
           <button
             class="ui teal button grp"
-            onclick="side_length = 5, cir = false"
+            onclick="side_length = 5, cir = false, L = false"
           >
             Pentagon
           </button>
           <button
             class="ui teal button grp active"
-            onclick="side_length = 6, cir = false"
+            onclick="side_length = 6, cir = false, L = false"
           >
             Hexagon
           </button>
-          <button class="ui teal button grp" onclick="cir = true">
+          <button class="ui teal button grp" onclick="cir = true, L = false">
             Circle
           </button>
         </div>
@@ -112,6 +115,7 @@
     <script src="Box.js"></script>
     <script src="Circle.js"></script>
     <script src="Polygon.js"></script>
+    <script src="Line.js"></script>
     <script src="Eraser.js"></script>
     <script src="sketch.js"></script>
   </body>

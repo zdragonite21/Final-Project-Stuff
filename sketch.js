@@ -43,13 +43,17 @@ var rot = 0
 var vel = { x: 3, y: 4 }
 var max_rad = 400
 var min_rad = 40
+var stroke_len = 10
 
 var poX = 0
 var poY = 0
+var pX = 0
+var pY = 0
 var stay = false
 var turn = false
 var hidden = false
 var erase = false
+var L = false
 
 function handleCollision(bodyA, bodyB) {
   // console.log(bodyA.label, bodyB.label)
@@ -107,6 +111,9 @@ function mouseClicked() {
       if (cir) {
         shapes.push(new Circle(poX, poY, shape_rad, true))
         button1 = false
+      } else if (L) {
+        shapes.push(new Line(pX, mouseX, pY, mouseY, stroke_len))
+        button1 = false
       } else {
         if (stay) {
           shapes.push(new Polygon(poX, poY, side_length, shape_rad, rot))
@@ -143,8 +150,15 @@ function keyPressed() {
 }
 
 function mouseWheel(event) {
-  shape_rad += event.delta / 20
-  shape_rad = constrain(shape_rad, 30, 150)
+  if (button1) {
+    if (L) {
+      stroke_len += event.delta / 40
+      stroke_len = constrain(stroke_len, 5, 30)
+    } else {
+      shape_rad += event.delta / 20
+      shape_rad = constrain(shape_rad, 30, 150)
+    }
+  }
 }
 
 function draw() {
@@ -191,7 +205,7 @@ function draw() {
     }
   }
   if (button1) {
-    Poly(poX, poY, side_length, shape_rad, rot, cir)
+    Poly(poX, poY, side_length, shape_rad, rot, cir, L)
   }
 
   if (button2) {

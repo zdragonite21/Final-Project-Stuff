@@ -53,3 +53,7 @@ function cirConstrain(base, pt, min_rad, max_rad, shift) {
 function distance(x1, x2, y1, y2) {
   return { x: x2 - x1, y: y2 - y1 }
 }
+
+function avg(x1, x2, y1, y2) {
+  return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 }
+}
