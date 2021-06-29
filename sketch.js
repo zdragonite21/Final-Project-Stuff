@@ -46,6 +46,17 @@ var turn = false
 var hidden = false
 var erase = false
 
+function handleCollision(bodyA, bodyB) {
+  // console.log(bodyA.label, bodyB.label)
+
+  // handle if eraser is one of the objects
+  if (bodyA.label === "eraser" || bodyB.label === "eraser") {
+    console.log("eraser collided")
+  }
+
+  // if bodyA || bodyB === hex -- sampler.triggerAttackRelease(['a3', 'c3', 'e3'], '8n')
+}
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight)
   engine = Engine.create()
@@ -71,8 +82,13 @@ function setup() {
 
   World.add(world, [ground, ground1, ground2, ground3])
 
-  Events.on(engine, "collisionStart", function (e) {
-    // console.log(e)
+  Events.on(engine, "collisionStart", function (event) {
+    var pair = event.pairs[0]
+
+    var bodyA = pair.bodyA
+    var bodyB = pair.bodyB
+
+    handleCollision(bodyA, bodyB)
   })
 }
 
@@ -175,6 +191,5 @@ function draw() {
 
   if (erase) {
     eraser.show()
-    eraser.detect()
   }
 }
