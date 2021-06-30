@@ -112,8 +112,13 @@ function mouseClicked() {
         shapes.push(new Circle(poX, poY, shape_rad, true))
         button1 = false
       } else if (L) {
-        shapes.push(new Line(pX, mouseX, pY, mouseY, stroke_len))
-        button1 = false
+        if (stay) {
+          shapes.push(new Line(poX, pX, poY, pY, stroke_len))
+          button1 = false
+          stay = false
+        } else {
+          stay = true
+        }
       } else {
         if (stay) {
           shapes.push(new Polygon(poX, poY, side_length, shape_rad, rot))
@@ -191,6 +196,8 @@ function draw() {
         )
       } else {
         rot = Math.atan2(mouseY - poY, mouseX - poX)
+        pX = mouseX
+        pY = mouseY
       }
     } else if (button2) {
       con = cirConstrain(

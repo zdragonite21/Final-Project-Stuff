@@ -56,6 +56,8 @@ function Poly(X, Y, s, r, a, c, l) {
     stroke(255)
     fill(177)
     ellipse(pos.x, pos.y, r * 2, r * 2)
+  } else if (l && turn) {
+    Ln({ x: X, y: Y }, pX, pY)
   } else if (l) {
     strokeWeight(1)
     stroke(255)

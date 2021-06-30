@@ -34,31 +34,43 @@ function Line(x1, x2, y1, y2, s) {
     rect(0, 0, length, width)
     pop()
   }
+}
 
-  function converter(x1, x2, y1, y2, s) {
-    var l
-    var w
-    var c
-    var x
-    var y
-    var a
-    var vy
-    var vx
+function Ln(base, X, Y) {
+  conv = converter(base.x, X, base.y, Y, stroke_len)
+  push()
+  translate(conv.x, conv.y)
+  rotate(conv.a)
+  strokeWeight(1)
+  stroke(255)
+  fill(177)
+  rect(0, 0, conv.l, conv.w)
+  pop()
+}
 
-    l = hpt(distance(x1, x2, y1, y2))
+function converter(x1, x2, y1, y2, s) {
+  var l
+  var w
+  var c
+  var x
+  var y
+  var a
+  var vy
+  var vx
 
-    w = s
+  l = hpt(distance(x1, x2, y1, y2))
 
-    c = avg(x1, x2, y1, y2)
+  w = s
 
-    x = c.x
-    y = c.y
+  c = avg(x1, x2, y1, y2)
 
-    vx = x2 - x
-    vy = y2 - y
+  x = c.x
+  y = c.y
 
-    a = Math.atan2(vy, vx)
+  vx = x2 - x
+  vy = y2 - y
 
-    return { x: x, y: y, l: l, w: w, a: a }
-  }
+  a = Math.atan2(vy, vx)
+
+  return { x: x, y: y, l: l, w: w, a: a }
 }
